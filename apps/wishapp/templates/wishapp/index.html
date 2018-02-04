@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Registration</title>
+    <style>
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1> Welcome to Wishlist </h1>
+    <h2> Please Register or Login </h2>
+    <form class="registration" action="/registration" method="post">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "reg name error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}        
+            {% endfor %}
+        {% endif %}
+        <p>Name: <input type="text" name="name"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "reg username error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Username: <input type="text" name="username"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "reg email error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Password: <input type="password" name="password"></p>
+ <!-- no confirm password error necessary -->
+        <p>Confirm Password: <input type="password" name="confirm_password"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "reg datehired error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Date Hired: <input type="date" name="datehired"></p>
+        <input type="submit" value="Register">
+    </form>
+    <!-- LOGIN  -->
+    <h1> Log In </h1>
+    <form class="login" action="/login" method = "post">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "log username error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>User Name:</p><input type="text" name="username">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "log password error" %}
+                    <p class='err'>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Password:</p><input type="password" name="password">
+        <input type="submit" value="login">
+    </form>
+</body>
+</html>

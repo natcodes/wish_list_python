@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create a New Wish Item</title>
+</head>
+<body>
+    <a href = "/home"><button>Home</button></a>
+    <a href = "/logout"><button>Logout</button></a>
+
+    <h1> Create a New Wish Item </h1>
+    <form action="/create" method = "POST">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                    <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        Item/Product: <input type="text" name="new_item">
+        <input type="submit" name="Add">
+    </form>
+    
+</body>
+</html>
